@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  database:
+    container_name: mysql_db
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: spring_security
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: 0000
+      MYSQL_USER: spring_security_user
+      MYSQL_PASSWORD: spring_security_password
+      TZ: 'Asia/Seoul'
+    ports:
+      - "13306:3306"
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+    command:
+      - "mysqld"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+    networks:
+      - spring_security_network
+
+  application:
+    container_name: docker-compose-test
+    restart: on-failure
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:13306/spring_security?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: "spring_security_user"
+      SPRING_DATASOURCE_PASSWORD: "spring_security_password"
+    depends_on:
+      - database
+    networks:
+      - spring_security_network
+
+networks:
+  spring_security_network:
