@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class SpringSecurityJwtApplication
 
 fun main(args: Array<String>) {
-	runApplication<SpringSecurityJwtApplication>(*args)
+    runApplication<SpringSecurityJwtApplication>(*args)
 }
