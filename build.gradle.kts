@@ -7,6 +7,7 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint-idea") version "10.0.0"
     kotlin("jvm") version "1.7.22"
     kotlin("plugin.spring") version "1.7.22"
+    kotlin("plugin.jpa") version "1.7.22"
 }
 
 group = "com.example"
@@ -18,8 +19,13 @@ repositories {
 }
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("mysql:mysql-connector-java:8.0.32")
+
+    api("org.springframework.boot:spring-boot-starter-data-jpa")
+    api("com.querydsl:querydsl-jpa:5.0.0:jakarta")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
 }
