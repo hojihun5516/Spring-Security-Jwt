@@ -1,0 +1,41 @@
+package com.example.springsecurityjwt.domains
+
+import com.example.springsecurityjwt.dtos.UserId
+import org.springframework.data.annotation.CreatedDate
+import org.springframework.data.annotation.LastModifiedDate
+import org.springframework.data.jpa.domain.support.AuditingEntityListener
+import java.time.LocalDate
+import java.time.LocalDateTime
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.EntityListeners
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+
+@Entity(name = "user")
+@EntityListeners(AuditingEntityListener::class)
+class User(
+    var username: String,
+    var password: String,
+    var name: String,
+    var birthday: LocalDate?,
+) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: UserId? = null
+
+    var deletedAt: LocalDateTime? = null
+        protected set
+
+    @CreatedDate
+    @Column(updatable = false)
+    lateinit var createdAt: LocalDateTime
+
+    @LastModifiedDate
+    lateinit var updatedAt: LocalDateTime
+
+    fun delete() {
+        deletedAt = LocalDateTime.now()
+    }
+}
