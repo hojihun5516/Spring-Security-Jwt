@@ -24,7 +24,7 @@ services:
       - spring_security_network
 
   application:
-    container_name: docker-compose-test
+    container_name: App
     restart: on-failure
     build:
       context: ./
@@ -32,7 +32,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:13306/spring_security?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:3306/spring_security?useSSL=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: "spring_security_user"
       SPRING_DATASOURCE_PASSWORD: "spring_security_password"
     depends_on:
