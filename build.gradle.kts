@@ -31,6 +31,9 @@ dependencies {
 
     api("org.springframework.boot:spring-boot-starter-data-jpa")
     api("com.querydsl:querydsl-jpa:5.0.0:jakarta")
+
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+    testImplementation("io.mockk:mockk:1.13.2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
 }
