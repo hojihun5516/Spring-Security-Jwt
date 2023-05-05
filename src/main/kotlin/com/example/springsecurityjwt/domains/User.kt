@@ -38,4 +38,14 @@ class User(
     fun withdraw() {
         deletedAt = LocalDateTime.now()
     }
+
+    fun toUserRoleProfile(): UserProfile {
+        return UserProfile(
+            name = name,
+        ).also {
+            it.role = Role.ROLE_USER
+            it.user = this
+            it.userId = this.id!!
+        }
+    }
 }
