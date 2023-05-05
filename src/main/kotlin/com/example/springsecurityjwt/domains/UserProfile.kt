@@ -1,5 +1,6 @@
 package com.example.springsecurityjwt.domains
 
+import com.example.springsecurityjwt.dtos.UserId
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
@@ -21,7 +22,6 @@ import jakarta.persistence.ManyToOne
 @EntityListeners(AuditingEntityListener::class)
 class UserProfile(
     var name: String,
-
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ class UserProfile(
     var role: Role = Role.NONE
 
     @Column(name = "user_id")
-    var userId = 0L
+    var userId: UserId = 0L
 
     var deletedAt: LocalDateTime? = null
         protected set
