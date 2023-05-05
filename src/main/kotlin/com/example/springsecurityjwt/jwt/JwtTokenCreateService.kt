@@ -1,6 +1,6 @@
 package com.example.springsecurityjwt.jwt
 
-import com.example.springsecurityjwt.domains.UserProfile
+import com.example.springsecurityjwt.dtos.UserProfileDto
 import com.example.springsecurityjwt.utils.toDate
 import io.jsonwebtoken.JwsHeader
 import io.jsonwebtoken.Jwts
@@ -9,15 +9,15 @@ import java.time.LocalDateTime
 
 @Component
 class JwtTokenCreateService {
-    fun createToken(userProfile: UserProfile): String {
+    fun createToken(userProfileDto: UserProfileDto): String {
         val now = LocalDateTime.now()
         val jwtKey = JwtKey.getRandomJwtKeySet()
         val claims = Jwts.claims()
-            .setSubject(userProfile.user.username) // subject
+            .setSubject(userProfileDto.user.username) // subject
             .apply { // custom claims
-                this["name"] = userProfile.name
-                this["birthday"] = userProfile.user.birthday.toString()
-                this["role"] = userProfile.role
+                this["name"] = userProfileDto.profileName
+                this["birthday"] = userProfileDto.user.birthday.toString()
+                this["role"] = userProfileDto.profileRole
             }
 
         return Jwts.builder()

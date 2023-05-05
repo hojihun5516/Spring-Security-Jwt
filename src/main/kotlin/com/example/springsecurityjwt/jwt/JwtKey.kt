@@ -1,5 +1,10 @@
 package com.example.springsecurityjwt.jwt
 
+/**
+ * TODO
+ * application.yml에서 값을 가져온다
+ * spring bean으로 등록한다
+ */
 object JwtKey {
     private val JWT_KEY_SETS = JwtKeySets(
         listOf(
