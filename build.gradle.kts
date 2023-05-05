@@ -24,6 +24,11 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("mysql:mysql-connector-java:8.0.32")
 
+    // jwt
+    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+
     api("org.springframework.boot:spring-boot-starter-data-jpa")
     api("com.querydsl:querydsl-jpa:5.0.0:jakarta")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
