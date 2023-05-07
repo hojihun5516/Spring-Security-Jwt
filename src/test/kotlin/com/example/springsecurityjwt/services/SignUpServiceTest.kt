@@ -14,9 +14,6 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
-
-// TODO 17-signup에 있는 controller가져와
-
 @ExtendWith(MockKExtension::class)
 class SignUpServiceTest(
     @MockK private val userProfileRepository: UserProfileRepository,
