@@ -13,7 +13,7 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 
-@Entity(name = "user")
+@Entity(name = "users")
 @EntityListeners(AuditingEntityListener::class)
 class User(
     var username: String,
@@ -29,11 +29,14 @@ class User(
         protected set
 
     @CreatedDate
-    @Column(updatable = false)
-    lateinit var createdAt: LocalDateTime
+    @Column(nullable = false, updatable = false)
+    var createdAt: LocalDateTime = LocalDateTime.now()
+        protected set
 
     @LastModifiedDate
-    lateinit var updatedAt: LocalDateTime
+    @Column(nullable = false)
+    var updatedAt: LocalDateTime = LocalDateTime.now()
+        protected set
 
     fun withdraw() {
         deletedAt = LocalDateTime.now()

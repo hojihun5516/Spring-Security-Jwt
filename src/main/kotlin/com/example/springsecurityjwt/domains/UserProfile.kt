@@ -18,7 +18,7 @@ import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 
 
-@Entity(name = "user_profile")
+@Entity(name = "user_profiles")
 @EntityListeners(AuditingEntityListener::class)
 class UserProfile(
     var name: String,
@@ -41,11 +41,14 @@ class UserProfile(
     lateinit var user: User
 
     @CreatedDate
-    @Column(updatable = false)
-    lateinit var createdAt: LocalDateTime
+    @Column(nullable = false, updatable = false)
+    var createdAt: LocalDateTime = LocalDateTime.now()
+        protected set
 
     @LastModifiedDate
-    lateinit var updatedAt: LocalDateTime
+    @Column(nullable = false)
+    var updatedAt: LocalDateTime = LocalDateTime.now()
+        protected set
 
     fun withdraw() {
         deletedAt = LocalDateTime.now()

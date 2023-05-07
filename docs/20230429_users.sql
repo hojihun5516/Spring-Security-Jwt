@@ -1,8 +1,8 @@
-create table spring_security.user
+create table spring_security.users
 (
     id                          bigint        not null auto_increment primary key,
-    username                    bigint        not null default 0                        comment '유저 아이디',
-    password                    datetime          null                                  comment '비밀번호',
+    username                    varchar(100)  not null                                  comment '유저 아이디',
+    password                    varchar(100)      null                                  comment '비밀번호',
     name                        varchar(20)   not null                                  comment '이름',
     birthday                    date              null                                  comment '생일',
     deleted_at                  datetime          null                                  comment '탈퇴 일시',
