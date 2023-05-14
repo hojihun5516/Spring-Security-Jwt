@@ -31,7 +31,7 @@ class AuthenticationController(
     }
 
     @PostMapping(
-        "/sign-ip",
+        "/sign-in",
         consumes = [MediaType.APPLICATION_JSON_VALUE],
         produces = [MediaType.APPLICATION_JSON_VALUE],
     )
