@@ -35,6 +35,7 @@ dependencies {
     kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
 
     testImplementation("com.appmattus.fixture:fixture:1.2.0")
+    testRuntimeOnly("com.h2database:h2")
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
     testImplementation("io.mockk:mockk:1.13.2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
