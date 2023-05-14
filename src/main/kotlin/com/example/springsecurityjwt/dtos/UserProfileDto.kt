@@ -18,5 +18,19 @@ data class UserProfileDto(
                 user = UserDto.from(userProfile.user),
             )
         }
+
+        fun from(customUserDetails: CustomUserDetails): UserProfileDto {
+            return UserProfileDto(
+                profileId = customUserDetails.pid,
+                profileName = customUserDetails.name,
+                profileRole = customUserDetails.role,
+                user = UserDto(
+                    userId = customUserDetails.id,
+                    username = customUserDetails.username,
+                    name = customUserDetails.name,
+                    birthday = customUserDetails.birthday,
+                ),
+            )
+        }
     }
 }
