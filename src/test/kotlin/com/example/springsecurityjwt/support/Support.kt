@@ -1,6 +1,5 @@
 package com.example.springsecurityjwt.support
 
-
 import com.appmattus.kotlinfixture.decorator.nullability.NeverNullStrategy
 import com.appmattus.kotlinfixture.decorator.nullability.nullabilityStrategy
 import com.appmattus.kotlinfixture.decorator.optional.AlwaysOptionalStrategy
@@ -21,4 +20,3 @@ object Support {
         nullabilityStrategy(NeverNullStrategy)
     }
 }
-
