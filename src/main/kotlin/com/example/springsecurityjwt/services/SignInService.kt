@@ -2,27 +2,31 @@ package com.example.springsecurityjwt.services
 
 import com.example.springsecurityjwt.dtos.SignInRequest
 import com.example.springsecurityjwt.dtos.UserProfileDto
-import com.example.springsecurityjwt.repositories.UserProfileRepository
-import com.example.springsecurityjwt.repositories.UserRepository
+import com.example.springsecurityjwt.utils.AuthenticationUtils.joinUsernameAndRole
+import org.springframework.security.authentication.AuthenticationManager
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 @Transactional(readOnly = true)
 class SignInService(
-    private val userProfileRepository: UserProfileRepository,
-    private val userRepository: UserRepository,
+    private val authenticationManager: AuthenticationManager,
+    private val userDetailsService: CustomUserDetailsService,
 ) {
 
-    // TODO: custom exception
     fun signIn(signInRequest: SignInRequest): UserProfileDto {
+        val customUsername = joinUsernameAndRole(signInRequest.username, signInRequest.role)
 
-        val user = userRepository.findByUsername(signInRequest.username)
-            ?: throw Exception("username not found")
+        val passwordResult = UsernamePasswordAuthenticationToken(
+            customUsername,
+            signInRequest.password,
+        ).let { authenticationToken ->
+            authenticationManager.authenticate(authenticationToken)
+        }
 
-        val userProfile = userProfileRepository.findByUserIdAndRole(userId = user.id!!, role = signInRequest.role)
-            ?: throw Exception("user profile not found")
+        val userDetails = userDetailsService.loadUserByUsername(customUsername)
 
-        return UserProfileDto.from(userProfile)
+        return UserProfileDto.from(userDetails)
     }
 }
