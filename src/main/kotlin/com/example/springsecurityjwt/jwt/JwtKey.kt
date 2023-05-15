@@ -1,5 +1,9 @@
 package com.example.springsecurityjwt.jwt
 
+import io.jsonwebtoken.security.Keys
+import java.nio.charset.StandardCharsets
+import java.security.Key
+
 /**
  * TODO
  * application.yml에서 값을 가져온다
@@ -27,4 +31,9 @@ object JwtKey {
 
     fun getJwtKeySetByKid(kid: String) = JWT_KEY_SETS.getJwtKeySetByKid(kid)
 
+    fun getKey(kid: String?): Key {
+        val secretKey: String = JWT_KEY_SETS.jwtKeySets.singleOrNull{ it.kid == kid }?.secretKey
+            ?: throw Exception("JWT KEY를 찾을 수 없음")
+        return Keys.hmacShaKeyFor(secretKey.toByteArray(StandardCharsets.UTF_8))
+    }
 }
