@@ -3,6 +3,7 @@ package com.example.springsecurityjwt.utils
 import com.example.springsecurityjwt.domains.Role
 
 object AuthenticationUtils {
+    const val AUTHENTICATION_PASSWORD_FROM_FILTER = "AUTHENTICATION_PASSWORD_FROM_FILTER"
     private const val USERNAME_ROLE_DELIMITER = "||"
 
     /**
