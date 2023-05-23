@@ -27,7 +27,7 @@ class UserListUpServiceTest(
             UserProfileDto(
                 profileId = 1L,
                 profileName = "modernflow",
-                profileRole = Role.ROLE_USER,
+                profileRole = Role.USER,
                 user = UserDto(
                     userId = 1L,
                     username = "modernflow",
@@ -38,7 +38,7 @@ class UserListUpServiceTest(
             UserProfileDto(
                 profileId = 2L,
                 profileName = "jihoon",
-                profileRole = Role.ROLE_USER,
+                profileRole = Role.USER,
                 user = UserDto(
                     userId = 2L,
                     username = "jihoon",

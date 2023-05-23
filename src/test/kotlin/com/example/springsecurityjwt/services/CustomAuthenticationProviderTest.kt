@@ -28,7 +28,7 @@ class CustomAuthenticationProviderTest(
     @Test
     fun `sut should return Authentication when UsernamePasswordAuthenticationToken is given`() {
         // Arrange
-        val username = "modernflow||ROLE_USER"
+        val username = "modernflow||USER"
         val password = "password"
 
         val userDetails = Support.fixture<CustomUserDetails>()
@@ -53,7 +53,7 @@ class CustomAuthenticationProviderTest(
     @Test
     fun `sut should return Authentication without check password match when request from filter`() {
         // Arrange
-        val username = "modernflow||ROLE_USER"
+        val username = "modernflow||USER"
         val password = AuthenticationUtils.AUTHENTICATION_PASSWORD_FROM_FILTER
 
         val userDetails = Support.fixture<CustomUserDetails>()
@@ -77,7 +77,7 @@ class CustomAuthenticationProviderTest(
     @Test
     fun `sut throw when password is not correctly`() {
         // Arrange
-        val username = "modernflow||ROLE_USER"
+        val username = "modernflow||USER"
         val password = "password"
 
         val userDetails = Support.fixture<CustomUserDetails>()

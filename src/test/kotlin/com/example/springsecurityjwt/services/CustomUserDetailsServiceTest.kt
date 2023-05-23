@@ -30,7 +30,7 @@ class CustomUserDetailsServiceTest(
     fun `sut return custom user details`() {
         // Arrange
         val username = "modernflow"
-        val role = Role.ROLE_USER
+        val role = Role.USER
 
         val userId = 1L
         val userProfileId = 1L
@@ -72,7 +72,7 @@ class CustomUserDetailsServiceTest(
     fun `sut loadUserByUsername should throw when user is not exists`() {
         // Arrange
         val username = "modernflow"
-        val role = Role.ROLE_USER
+        val role = Role.USER
 
         every { userRepository.findByUsername(username) } returns null
 
@@ -89,7 +89,7 @@ class CustomUserDetailsServiceTest(
         // Arrange
         val username = "modernflow"
         val name = "moflow"
-        val role = Role.ROLE_USER
+        val role = Role.USER
 
         val userId = 1L
 
