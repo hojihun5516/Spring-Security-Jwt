@@ -46,7 +46,7 @@ class User(
         return UserProfile(
             name = name,
         ).also {
-            it.role = Role.ROLE_USER
+            it.role = Role.USER
             it.user = this
             it.userId = this.id!!
         }

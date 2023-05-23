@@ -29,7 +29,7 @@ class SignInServiceTest(
         // Arrange
         val username = "modernflow"
         val password = "password"
-        val role = Role.ROLE_USER
+        val role = Role.USER
 
         val signInRequest = SignInRequest(username, password, role)
 

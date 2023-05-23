@@ -12,8 +12,8 @@ class AuthenticationUtilsTest {
     fun `sut join username and role`() {
         // Arrange
         val username = "modernflow"
-        val role = Role.ROLE_USER
-        val expected = "modernflow||ROLE_USER"
+        val role = Role.USER
+        val expected = "modernflow||USER"
 
         // Act
         val actual = sut.joinUsernameAndRole(username, role)
@@ -25,9 +25,9 @@ class AuthenticationUtilsTest {
     @Test
     fun `sut split username and role`() {
         // Arrange
-        val usernameWithRole = "modernflow||ROLE_USER"
+        val usernameWithRole = "modernflow||USER"
         val expectedUsername = "modernflow"
-        val expectedRole = "ROLE_USER"
+        val expectedRole = "USER"
 
         // Act
         val (username, role) = sut.splitUsernameAndRole(usernameWithRole)
