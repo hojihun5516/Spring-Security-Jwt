@@ -35,6 +35,8 @@ class SpringSecurityConfig(
                 "/",
                 "/sign-up", // 회원가입 Endpoint
                 "/sign-in", // 로그인 Endpoint
+                "/v3/api-docs/**", // swagger
+                "/swagger-ui/**", // swagger
             )
         }
     }
