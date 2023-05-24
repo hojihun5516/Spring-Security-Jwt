@@ -1,7 +1,7 @@
 import com.example.springsecurityjwt.dtos.SignUpRequest
 import com.example.springsecurityjwt.dtos.UserDto
 import com.example.springsecurityjwt.dtos.UserProfileDto
-import com.example.springsecurityjwt.mappers.toUser
+import com.example.springsecurityjwt.extensions.SignUpRequestExtension.toUser
 import com.example.springsecurityjwt.repositories.UserProfileRepository
 import com.example.springsecurityjwt.repositories.UserRepository
 import com.example.springsecurityjwt.services.SignUpService
