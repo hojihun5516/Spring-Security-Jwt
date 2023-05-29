@@ -5,10 +5,17 @@ import com.example.springsecurityjwt.domains.UserProfile
 import com.example.springsecurityjwt.dtos.UserDto
 import com.example.springsecurityjwt.dtos.UserProfileDto
 import com.example.springsecurityjwt.support.Support
+import io.mockk.every
+import io.mockk.impl.annotations.MockK
+import io.mockk.junit5.MockKExtension
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 
-class JwtTokenCreateServiceTest {
+@ExtendWith(MockKExtension::class)
+class JwtTokenCreateServiceTest(
+    @MockK private val jwtKey: JwtKey,
+) {
     @Test
     fun `sut should create jwt token when user profile dto is given`() {
         // Arrange
@@ -28,9 +35,10 @@ class JwtTokenCreateServiceTest {
                 birthday = user.birthday,
             ),
         )
+        every { jwtKey.getRandomJwtKeySet() } returns Support.fixture()
 
         // Act
-        val actual = JwtTokenCreateService().createToken(userProfileDto)
+        val actual = JwtTokenCreateService(jwtKey = jwtKey).createToken(userProfileDto)
 
         // Assert
         assertThat(actual)
