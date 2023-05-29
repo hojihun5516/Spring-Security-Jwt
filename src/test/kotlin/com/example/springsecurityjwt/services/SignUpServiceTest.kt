@@ -68,7 +68,7 @@ class SignUpServiceTest(
             sut.signUp(signUpRequest)
         } catch (e: Exception) {
             // then
-            assertEquals("already exists username", e.message)
+            assertEquals("usernameAlreadyExists", e.message)
         }
     }
 }

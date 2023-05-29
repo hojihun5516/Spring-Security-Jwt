@@ -1,5 +1,7 @@
 package com.example.springsecurityjwt.jwt
 
+import com.example.springsecurityjwt.exceptions.Messages.JWT_KEY_NOT_FOUND_BY_KID
+import com.example.springsecurityjwt.exceptions.NotFoundException
 import io.jsonwebtoken.security.Keys
 import java.nio.charset.StandardCharsets
 import java.security.Key
@@ -33,7 +35,7 @@ object JwtKey {
 
     fun getKey(kid: String?): Key {
         val secretKey: String = JWT_KEY_SETS.jwtKeySets.singleOrNull{ it.kid == kid }?.secretKey
-            ?: throw Exception("JWT KEY를 찾을 수 없음")
+            ?: throw NotFoundException(JWT_KEY_NOT_FOUND_BY_KID, kid)
         return Keys.hmacShaKeyFor(secretKey.toByteArray(StandardCharsets.UTF_8))
     }
 }

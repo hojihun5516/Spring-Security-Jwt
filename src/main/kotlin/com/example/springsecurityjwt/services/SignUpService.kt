@@ -2,6 +2,8 @@ package com.example.springsecurityjwt.services
 
 import com.example.springsecurityjwt.dtos.SignUpRequest
 import com.example.springsecurityjwt.dtos.UserProfileDto
+import com.example.springsecurityjwt.exceptions.AlreadyExistsException
+import com.example.springsecurityjwt.exceptions.Messages.USERNAME_ALREADY_EXISTS
 import com.example.springsecurityjwt.extensions.SignUpRequestExtension.toUser
 import com.example.springsecurityjwt.repositories.UserProfileRepository
 import com.example.springsecurityjwt.repositories.UserRepository
@@ -25,7 +27,6 @@ class SignUpService(
     }
 
     private fun checkUserExists(username: String) {
-        // TODO: custom exception
-        userRepository.findByUsername(username)?.let { throw Exception("already exists username") }
+        userRepository.findByUsername(username)?.let { throw AlreadyExistsException(USERNAME_ALREADY_EXISTS, username) }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.springsecurityjwt.controllers
 
+import com.example.springsecurityjwt.domains.Role
 import com.example.springsecurityjwt.domains.User
 import com.example.springsecurityjwt.dtos.SignInRequest
 import com.example.springsecurityjwt.dtos.SignUpRequest
@@ -52,7 +53,9 @@ class AuthenticationControllerTest @Autowired constructor(
     @DisplayName("로그인 한다")
     fun `sut sign in user`() {
         // Arrange
-        val signInRequest = Support.fixture<SignInRequest>()
+        val signInRequest = Support.fixture<SignInRequest> {
+            property(SignInRequest::role) { Role.USER }
+        }
 
         val user = userRepository.save(
             User(

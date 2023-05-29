@@ -81,7 +81,7 @@ class CustomUserDetailsServiceTest(
             sut.loadUserByUsername(AuthenticationUtils.joinUsernameAndRole(username, role))
         }
 
-        assertEquals("username not found", exception.message)
+        assertEquals("userNotFound", exception.message)
     }
 
     @Test
@@ -108,6 +108,6 @@ class CustomUserDetailsServiceTest(
             sut.loadUserByUsername(AuthenticationUtils.joinUsernameAndRole(username, role))
         }
 
-        assertEquals("user profile not found", exception.message)
+        assertEquals("userProfileNotFound", exception.message)
     }
 }
