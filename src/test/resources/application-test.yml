@@ -26,3 +26,7 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.H2Dialect
+crypto:
+  aes256:
+    key: TESTTESTTESTTESTTESTTESTTESTTEST
+    iv: TESTTESTTESTTEST

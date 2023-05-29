@@ -8,3 +8,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
+crypto:
+  aes256:
+    key: KXL0G3w4Rfor4sbXpPD8fl8T02mUJwaw
+    iv: uMDdtiDiy6p7eQRy
