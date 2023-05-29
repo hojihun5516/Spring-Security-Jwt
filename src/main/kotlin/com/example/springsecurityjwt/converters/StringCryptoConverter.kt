@@ -1,5 +1,6 @@
 package com.example.springsecurityjwt.converters
 
+import com.example.springsecurityjwt.cryptors.Encryptor
 import jakarta.persistence.AttributeConverter
 import jakarta.persistence.Converter
 
