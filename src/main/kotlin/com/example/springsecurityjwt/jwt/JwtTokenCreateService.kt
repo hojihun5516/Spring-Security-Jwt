@@ -1,7 +1,7 @@
 package com.example.springsecurityjwt.jwt
 
 import com.example.springsecurityjwt.dtos.UserProfileDto
-import com.example.springsecurityjwt.utils.toDate
+import com.example.springsecurityjwt.extensions.LocalDateTimeExtensions.toDate
 import io.jsonwebtoken.JwsHeader
 import io.jsonwebtoken.Jwts
 import org.springframework.stereotype.Component
