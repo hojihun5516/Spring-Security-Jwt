@@ -1,6 +1,8 @@
 package com.example.springsecurityjwt.utils
 
 import com.example.springsecurityjwt.domains.Role
+import com.example.springsecurityjwt.exceptions.InvalidValueException
+import com.example.springsecurityjwt.exceptions.Messages.INVALID_USERNAME_FORMAT
 
 object AuthenticationUtils {
     const val AUTHENTICATION_PASSWORD_FROM_FILTER = "AUTHENTICATION_PASSWORD_FROM_FILTER"
@@ -13,12 +15,12 @@ object AuthenticationUtils {
         append(username).append(USERNAME_ROLE_DELIMITER).append(role)
     }
 
-    // TODO: custom exception
     /**
      * [username]과 [role]을 분리한다
      */
     fun splitUsernameAndRole(username: String?): Pair<String, String> {
-        return if (username.isNullOrEmpty() || !username.contains(USERNAME_ROLE_DELIMITER)) throw Exception("에러")
+        return if (username.isNullOrEmpty() || !username.contains(USERNAME_ROLE_DELIMITER))
+            throw InvalidValueException(INVALID_USERNAME_FORMAT, username)
         else username.substringBefore(USERNAME_ROLE_DELIMITER) to username.substringAfter(USERNAME_ROLE_DELIMITER)
 
     }
