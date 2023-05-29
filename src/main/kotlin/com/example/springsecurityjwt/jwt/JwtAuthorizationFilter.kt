@@ -28,22 +28,22 @@ class JwtAuthorizationFilter(
     ) {
         val authorizationHeader = request.getHeader("Authorization")
 
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            if (SecurityContextHolder.getContext().authentication != null) {
-                throw Exception("SecurityContextHolder 에러")
-            }
-
-            val token = authorizationHeader.substring(7)
-            val username = extractUsernameFromToken(token)
-            val userDetails = customUserDetailsService.loadUserByUsername(username)
-            val authenticationToken = UsernamePasswordAuthenticationToken(
-                username,
-                AUTHENTICATION_PASSWORD_FROM_FILTER,
-                userDetails.authorities
-            )
-            SecurityContextHolder.getContext().authentication =
-                customAuthenticationProvider.authenticate(authenticationToken)
+        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+            filterChain.doFilter(request, response)
+            return
         }
+
+        val token = authorizationHeader.substring(7)
+        val username = extractUsernameFromToken(token)
+        val userDetails = customUserDetailsService.loadUserByUsername(username)
+        val authenticationToken = UsernamePasswordAuthenticationToken(
+            username,
+            AUTHENTICATION_PASSWORD_FROM_FILTER,
+            userDetails.authorities
+        )
+
+        SecurityContextHolder.getContext().authentication =
+            customAuthenticationProvider.authenticate(authenticationToken)
 
         filterChain.doFilter(request, response)
     }
