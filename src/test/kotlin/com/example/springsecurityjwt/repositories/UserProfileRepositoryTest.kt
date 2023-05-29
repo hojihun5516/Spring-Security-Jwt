@@ -1,15 +1,19 @@
 package com.example.springsecurityjwt.repositories
 
+import com.example.springsecurityjwt.configs.EncryptorConfig
+import com.example.springsecurityjwt.converters.StringCryptoConverter
 import com.example.springsecurityjwt.domains.User
 import com.example.springsecurityjwt.support.Support
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import org.springframework.context.annotation.Import
 import org.springframework.test.context.ActiveProfiles
 
 @ActiveProfiles("test")
 @DataJpaTest
+@Import(EncryptorConfig::class)
 class UserProfileRepositoryTest @Autowired constructor(
     private val sut: UserProfileRepository,
     private val userRepository: UserRepository,
