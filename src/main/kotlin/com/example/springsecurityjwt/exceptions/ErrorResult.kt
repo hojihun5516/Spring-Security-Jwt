@@ -1,4 +1,4 @@
-package com.example.springsecurityjwt.configs
+package com.example.springsecurityjwt.exceptions
 
 open class ErrorResult(
     val code: String,

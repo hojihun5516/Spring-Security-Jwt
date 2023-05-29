@@ -1,6 +1,5 @@
 package com.example.springsecurityjwt.exceptions
 
-import com.example.springsecurityjwt.configs.ErrorResult
 import java.text.MessageFormat
 
 open class BaseException(
