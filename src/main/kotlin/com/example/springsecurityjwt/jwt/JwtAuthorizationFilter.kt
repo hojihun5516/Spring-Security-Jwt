@@ -19,6 +19,7 @@ import jakarta.servlet.http.HttpServletResponse
 class JwtAuthorizationFilter(
     private val customUserDetailsService: CustomUserDetailsService,
     private val customAuthenticationProvider: CustomAuthenticationProvider,
+    private val signingKeyResolver: SigningKeyResolver,
 ) : OncePerRequestFilter() {
 
     override fun doFilterInternal(
@@ -50,7 +51,7 @@ class JwtAuthorizationFilter(
 
     private fun extractUsernameFromToken(token: String): String {
         val claims = Jwts.parserBuilder()
-            .setSigningKeyResolver(SigningKeyResolver.signingKeyResolver)
+            .setSigningKeyResolver(signingKeyResolver)
             .build()
             .parseClaimsJws(token)
             .body

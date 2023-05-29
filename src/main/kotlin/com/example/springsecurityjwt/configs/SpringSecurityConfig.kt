@@ -1,6 +1,7 @@
 package com.example.springsecurityjwt.configs
 
 import com.example.springsecurityjwt.jwt.JwtAuthorizationFilter
+import com.example.springsecurityjwt.jwt.SigningKeyResolver
 import com.example.springsecurityjwt.services.CustomAuthenticationProvider
 import com.example.springsecurityjwt.services.CustomUserDetailsService
 import org.springframework.context.annotation.Bean
@@ -24,6 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 class SpringSecurityConfig(
     private val customUserDetailsService: CustomUserDetailsService,
     private val passwordEncoder: PasswordEncoder,
+    private val signingKeyResolver: SigningKeyResolver,
 ) {
     /**
      * 인증/인가 검사를 수행하지 않도록 설정
@@ -57,6 +59,7 @@ class SpringSecurityConfig(
                 JwtAuthorizationFilter(
                     customUserDetailsService,
                     CustomAuthenticationProvider(customUserDetailsService, passwordEncoder),
+                    signingKeyResolver,
                 ),
                 UsernamePasswordAuthenticationFilter::class.java,
             )

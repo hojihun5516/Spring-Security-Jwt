@@ -12,3 +12,11 @@ crypto:
   aes256:
     key: KXL0G3w4Rfor4sbXpPD8fl8T02mUJwaw
     iv: uMDdtiDiy6p7eQRy
+
+jwt:
+  key-set:
+    keys:
+      - kid: kid-1
+        secretKey: cxpoi2thr0w0gxgrz0w4yj59v7kk4sae
+      - kid: kid-2
+        secretKey: oyuq98vmooc59h1iwfhb6kgczyt71p21

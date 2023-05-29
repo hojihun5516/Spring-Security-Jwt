@@ -8,10 +8,12 @@ import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 
 @Component
-class JwtTokenCreateService {
+class JwtTokenCreateService(
+    private val jwtKey: JwtKey,
+) {
     fun createToken(userProfileDto: UserProfileDto): String {
         val now = LocalDateTime.now()
-        val jwtKey = JwtKey.getRandomJwtKeySet()
+        val jwtKey = jwtKey.getRandomJwtKeySet()
         val claims = Jwts.claims()
             .setSubject(userProfileDto.user.username) // subject
             .apply { // custom claims
