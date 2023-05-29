@@ -1,7 +1,7 @@
 package com.example.springsecurityjwt.configs
 
-import com.example.springsecurityjwt.converters.AesEncryptor
-import com.example.springsecurityjwt.converters.Encryptor
+import com.example.springsecurityjwt.cryptors.AesEncryptor
+import com.example.springsecurityjwt.cryptors.Encryptor
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.context.annotation.Bean

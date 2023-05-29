@@ -1,4 +1,4 @@
-package com.example.springsecurityjwt.converters
+package com.example.springsecurityjwt.cryptors
 
 import java.util.Base64
 import javax.crypto.Cipher
