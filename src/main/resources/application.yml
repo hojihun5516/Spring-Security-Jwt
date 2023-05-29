@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://mysql_db:3306/spring_security?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:13306/spring_security?useSSL=false&allowPublicKeyRetrieval=true
     username: spring_security_user
     password: spring_security_password
   jpa:

@@ -15,3 +15,6 @@ Implementing simple authentication and authorization using Spring Security and J
 
 ## HOW TO RUN
 ``docker-compose build --no-cache & docker-compose up``
+
+## Running in Debug Mode
+- Run the database using docker-compose and launch the application separately.

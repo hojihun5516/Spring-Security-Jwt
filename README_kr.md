@@ -15,3 +15,6 @@
 
 ## 실행 방법
 ``docker-compose build --no-cache & docker-compose up``
+
+## 디버그모드로 실행
+- database만 docker-compose로 실행시키고 애플리케이션을 따로 Run한다
