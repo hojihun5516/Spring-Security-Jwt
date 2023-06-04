@@ -4,10 +4,10 @@ import com.example.springsecurityjwt.domains.User
 import com.example.springsecurityjwt.dtos.SignUpRequest
 
 object SignUpRequestExtension {
-    fun SignUpRequest.toUser(): User {
+    fun SignUpRequest.toUser(encodedPassword: String): User {
         return User(
             username = this.username,
-            password = this.password,
+            password = encodedPassword,
             name = this.name,
             birthday = this.birthday,
         )

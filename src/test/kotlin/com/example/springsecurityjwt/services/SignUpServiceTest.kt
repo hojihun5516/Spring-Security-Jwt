@@ -5,6 +5,7 @@ import com.example.springsecurityjwt.extensions.SignUpRequestExtension.toUser
 import com.example.springsecurityjwt.repositories.UserProfileRepository
 import com.example.springsecurityjwt.repositories.UserRepository
 import com.example.springsecurityjwt.services.SignUpService
+import com.example.springsecurityjwt.support.Support
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
@@ -13,11 +14,13 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.springframework.security.crypto.password.PasswordEncoder
 
 @ExtendWith(MockKExtension::class)
 class SignUpServiceTest(
     @MockK private val userProfileRepository: UserProfileRepository,
     @MockK private val userRepository: UserRepository,
+    @MockK private val passwordEncoder: PasswordEncoder,
 ) {
     @InjectMockKs
     private lateinit var sut: SignUpService
@@ -31,8 +34,10 @@ class SignUpServiceTest(
             name = "Test User",
             birthday = null,
         )
+        val encodedPassword = Support.fixture<String>()
+        every { passwordEncoder.encode(signUpRequest.password) } returns encodedPassword
 
-        val savedUser = signUpRequest.toUser().apply { id = 1L }
+        val savedUser = signUpRequest.toUser(encodedPassword).apply { id = 1L }
         every { userRepository.findByUsername(signUpRequest.username) } returns null
         every { userRepository.save(any()) } returns savedUser
         val userDto = UserDto.from(savedUser)
@@ -60,8 +65,10 @@ class SignUpServiceTest(
             name = "Test User",
             birthday = null,
         )
+        val encodedPassword = Support.fixture<String>()
+        every { passwordEncoder.encode(signUpRequest.password) } returns encodedPassword
 
-        every { userRepository.findByUsername(signUpRequest.username) } returns signUpRequest.toUser()
+        every { userRepository.findByUsername(signUpRequest.username) } returns signUpRequest.toUser(encodedPassword)
 
         // when
         try {

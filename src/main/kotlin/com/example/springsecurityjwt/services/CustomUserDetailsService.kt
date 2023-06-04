@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service
 class CustomUserDetailsService(
     private val userProfileRepository: UserProfileRepository,
     private val userRepository: UserRepository,
-    private val passwordEncoder: PasswordEncoder,
 ) : UserDetailsService {
 
     override fun loadUserByUsername(username: String?): CustomUserDetails {
@@ -33,7 +32,7 @@ class CustomUserDetailsService(
             this.pid = userProfile.id!!
             this.name = userProfile.name
             this.role = userProfile.role
-            this.encodedPassword = passwordEncoder.encode(user.password)
+            this.encodedPassword = user.password
         }
     }
 }

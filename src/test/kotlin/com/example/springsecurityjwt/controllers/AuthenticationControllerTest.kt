@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
@@ -29,6 +30,7 @@ class AuthenticationControllerTest @Autowired constructor(
     private val objectMapper: ObjectMapper,
     private val userRepository: UserRepository,
     private val userProfileRepository: UserProfileRepository,
+    private val passwordEncoder: PasswordEncoder,
 ) {
 
     @Test
@@ -60,7 +62,7 @@ class AuthenticationControllerTest @Autowired constructor(
         val user = userRepository.save(
             User(
                 username = signInRequest.username,
-                password = signInRequest.password,
+                password = passwordEncoder.encode(signInRequest.password),
                 name = "modernflow",
                 birthday = null,
             ),

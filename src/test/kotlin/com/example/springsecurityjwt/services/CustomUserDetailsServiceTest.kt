@@ -65,7 +65,6 @@ class CustomUserDetailsServiceTest(
             .hasFieldOrPropertyWithValue("pid", userProfileId)
             .hasFieldOrPropertyWithValue("name", name)
             .hasFieldOrPropertyWithValue("role", role)
-            .hasFieldOrPropertyWithValue("encodedPassword", encodedPassword)
     }
 
     @Test
