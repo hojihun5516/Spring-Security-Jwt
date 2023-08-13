@@ -1,17 +1,36 @@
-# Spring Security with JWT
+# Spring Security With JWT
 
-## Objective
-Implementing simple authentication and authorization using Spring Security and JWT.
+## Purpose
+- Utilizing multiple profiles with a single account
+- e.g.) Envisioning a multi-profile environment in a single service, allowing users to **Log in as a Seller**, **Log in as a Buyer**, etc.
 
-## Contents
-- Implementing a simple authentication and authorization mechanism using Spring Security and JSON Web Tokens (JWT).
-- There are two types of permissions available: ADMIN and USER.
-- Utilizing Docker containers with the help of docker-compose.
-- Tailoring an Exception Handler to fit the project requirements.
-- Using key rolling technology to create access tokens with multiple keys.
-- Allows the selection of desired Role at the time of login:
-- The [joinUsernameAndRole] function is utilized to include the desired ROLE within the [username] parameter that is passed to the [loadUserByUsername] method of the [Userdetails] class.
-- A user can possess multiple Profiles, with each profile having the ability to hold a single permission.
+## Improvements
+AS-IS
+- Many existing login methods don't include the concept of a profile, storing both seller and buyer permissions in a single user information.
 
-## HOW TO RUN
-``docker-compose build --no-cache & docker-compose up``
+TO-BE
+- Creating and using multiple profiles with the same login account information.
+
+- Logging in with the profile information chosen at the time of login.
+
+![user_profiles](images/user_profiles.png)
+
+## Implementation Details
+- Simple authentication and authorization implemented through Spring Security and JWT
+- Roles include ADMIN and USER
+- Using docker-compose for Docker container management
+- Customized Exception Handler for project-specific handling
+- Employing key rolling technology to create accessTokens using multiple keys
+- Selecting desired Role when logging in
+    - Utilizing the [joinUsernameAndRole] function to include the desired ROLE in [username] passed to the [loadUserByUsername] method of the [Userdetails] class
+- Users may have multiple Profiles, each of which may have a single permission
+
+## How to Run
+
+```
+# project build
+./gradlew clean build
+
+# docker build and run
+docker-compose build --no-cache & docker-compose up
+```
