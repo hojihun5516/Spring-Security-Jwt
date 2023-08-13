@@ -4,6 +4,8 @@ spring:
     username: spring_security_user
     password: spring_security_password
   jpa:
+    hibernate:
+      ddl-auto: create
     open-in-view: false
     properties:
       hibernate:
