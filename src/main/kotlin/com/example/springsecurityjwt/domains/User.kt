@@ -1,5 +1,6 @@
 package com.example.springsecurityjwt.domains
 
+import com.example.springsecurityjwt.converters.LocalDateCryptoConverter
 import com.example.springsecurityjwt.dtos.UserId
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
@@ -7,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDate
 import java.time.LocalDateTime
 import jakarta.persistence.Column
+import jakarta.persistence.Convert
 import jakarta.persistence.Entity
 import jakarta.persistence.EntityListeners
 import jakarta.persistence.GeneratedValue
@@ -19,6 +21,7 @@ class User(
     var username: String,
     var password: String,
     var name: String,
+    @Convert(converter = LocalDateCryptoConverter::class)
     var birthday: LocalDate?,
 ) {
     @Id
